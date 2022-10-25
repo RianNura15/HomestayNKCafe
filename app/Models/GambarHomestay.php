@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class GambarHomestay extends Model
 {
     use HasFactory;
+
+    protected $table = "gambar_homestays";
+    protected $fillable = [
+        'homestay_id',
+        'filename'
+    ];
 }
