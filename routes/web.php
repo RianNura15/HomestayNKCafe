@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/landingpage', [PelangganController::class, 'home']);
+
+Route::get('/menu', [AdminController::class, 'home'])->name('dashboard');
+Route::get('/homestay', [AdminController::class, 'homestay'])->name('homestay');
