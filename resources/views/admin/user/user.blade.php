@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
-@section('title', 'Data Homestay')
-@section('pages', 'Homestay')
-@section('halaman', 'Homestay')
+@section('title', 'Data User')
+@section('pages', 'User')
+@section('halaman', 'User')
 @section('content')
   <div class="min-height-300 bg-primary position-absolute w-100"></div>
   @include('admin.layouts.sidebar')
@@ -12,7 +12,7 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Data Homestay</h6>
+              <h6>Data User</h6>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">

@@ -19,7 +19,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/landingpage', [PelangganController::class, 'home']);
-
+//-----------------------------------------ADMIN---------------------------------------------
 Route::get('/menu', [AdminController::class, 'home'])->name('dashboard');
+
 Route::get('/homestay', [AdminController::class, 'homestay'])->name('homestay');
+
+Route::get('/perlengkapan', [AdminController::class, 'perlengkapan'])->name('perlengkapan');
+
+Route::get('/fasilitas', [AdminController::class, 'fasilitas'])->name('fasilitas');
+
+Route::get('/datasewa', [AdminController::class, 'datasewa'])->name('datasewa');
+
+Route::get('/laporan', [AdminController::class, 'laporan'])->name('laporan');
+
+Route::get('/datauser', [AdminController::class, 'datauser'])->name('datauser');
+
+//----------------------------------------PELANGGAN------------------------------------------
+Route::get('/landingpage', [PelangganController::class, 'home'])->name('landingpage');
+
+Route::get('/about', [PelangganController::class, 'about'])->name('about');
+
+Route::get('/contactus', [PelangganController::class, 'contactus'])->name('contactus');
