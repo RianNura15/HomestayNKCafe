@@ -14,4 +14,9 @@ class GambarHomestay extends Model
         'homestay_id',
         'filename'
     ];
+
+    public function homestay()
+    {
+        return $this->belongsTo(Homestay::class, 'homestay_id', 'id_homestay');
+    }
 }

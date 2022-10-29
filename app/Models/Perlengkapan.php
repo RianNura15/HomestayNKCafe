@@ -18,4 +18,9 @@ class Perlengkapan extends Model
         'desc_perlengkapan',
         'gambar'
     ];
+
+    public function homestay()
+    {
+        return $this->belongsTo(Homestay::class, 'homestay_id', 'id_homestay');
+    }
 }

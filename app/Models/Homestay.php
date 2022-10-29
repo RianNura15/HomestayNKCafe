@@ -17,4 +17,19 @@ class Homestay extends Model
         'gambar',
         'desc_homestay'
     ];
+
+    public function fasilitas()
+    {
+        return $this->belongsTo(Fasilitas::class, 'homestay_id', 'id_homestay');
+    }
+
+    public function gambar()
+    {
+        return $this->belongsTo(GambarHomestay::class, 'homestay_id', 'id_homestay');
+    }
+
+    public function homestay()
+    {
+        return $this->hasMany(Homestay::class, 'homestay_id', 'id_homestay');
+    }
 }

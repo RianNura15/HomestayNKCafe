@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function datasewa()
+    {
+        return $this->hasMany(DataSewa::class, 'user_id', 'id');
+    }
+
+    public function datauser()
+    {
+        return $this->belongsTo(Homestay::class, 'user_id', 'id');
+    }
 }
