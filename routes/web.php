@@ -22,11 +22,20 @@ Route::get('/', function () {
 //-----------------------------------------ADMIN---------------------------------------------
 Route::get('/menu', [AdminController::class, 'home'])->name('dashboard');
 
-Route::get('/homestay', [AdminController::class, 'homestay'])->name('homestay');
+Route::prefix('homestay')->group(function () {
+    Route::get('index', [AdminController::class, 'homestay'])->name('homestay');
+    Route::post('create', [AdminController::class, 'add_homestay'])->name('tambahhomestay');
+    Route::post('update/{id_homestay}', [AdminController::class, 'update_homestay'])->name('updatehomestay');
+    Route::get('destroy/{id_homestay}', [AdminController::class, 'delete_homestay'])->name('deletehomestay');
+});
 
-Route::get('/perlengkapan', [AdminController::class, 'perlengkapan'])->name('perlengkapan');
+Route::prefix('perlengkapan')->group(function () {
+    Route::get('index/{id_homestay}', [AdminController::class, 'perlengkapan'])->name('perlengkapan');
+});
 
-Route::get('/fasilitas', [AdminController::class, 'fasilitas'])->name('fasilitas');
+Route::prefix('fasilitas')->group(function () {
+    Route::get('index/{id_homestay}', [AdminController::class, 'fasilitas'])->name('fasilitas');
+});
 
 Route::get('/datasewa', [AdminController::class, 'datasewa'])->name('datasewa');
 
