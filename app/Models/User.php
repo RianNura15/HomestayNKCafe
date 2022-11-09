@@ -49,6 +49,6 @@ class User extends Authenticatable
 
     public function datauser()
     {
-        return $this->belongsTo(Homestay::class, 'user_id', 'id');
+        return $this->belongsTo(Datauser::class, 'id', 'user_id');
     }
 }

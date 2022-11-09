@@ -19,32 +19,32 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Sewa</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Expired</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach($data as $item)
                     <tr>
-                      
+                      <td class="text-center">{{$loop->iteration}}</td>
+                      <td class="text-center">{{$item->tanggal_sewa}}</td>
+                      <td class="text-center">{{ \Carbon\Carbon::parse($item->expired)->locale('id')->diffForHumans() }}</td>
+                      <td class="text-center">
+                        <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detail{{$item->id_fasilitas}}">
+                          <i class="ni ni-archive-2"></i>
+                        </button>
+                        <a href="{{route('ceksewa', $item->id_sewa)}}" class="btn btn-danger btn-sm">
+                          <i class="ni ni-fat-remove"></i>
+                        </a>
+                        <a href="{{route('batalsewa', $item->id_sewa)}}" class="btn btn-danger btn-sm">
+                          <i class="ni ni-fat-remove"></i>
+                        </a>
+                      </td>
                     </tr>
-                    <tr>
-                      
-                    </tr>
-                    <tr>
-                      
-                    </tr>
-                    <tr>
-                      
-                    </tr>
-                    <tr>
-                      
-                    </tr>
-                    <tr>
-                      
-                    </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>

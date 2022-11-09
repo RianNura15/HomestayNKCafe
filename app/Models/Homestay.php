@@ -27,4 +27,9 @@ class Homestay extends Model
     {
         return $this->belongsTo(GambarHomestay::class, 'homestay_id', 'id_homestay');
     }
+
+    public function perlengkapan()
+    {
+        return $this->belongsTo(Perlengkapan::class, 'homestay_id', 'id_homestay');
+    }
 }

@@ -19,6 +19,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/login', [AdminController::class, 'login'])->name('login');
+
+Route::prefix('register')->group(function () {
+    Route::get('index', [AdminController::class, 'register'])->name('register');
+    Route::post('register', [AdminController::class, 'addreg'])->name('addreg');
+});
+
+Route::prefix('registrasi')->group(function () {
+    Route::get('index', [PelangganController::class, 'register'])->name('registerpelanggan');
+    Route::post('registrasi', [PelangganController::class, 'addreg'])->name('addregpelanggan');
+});
+
 //-----------------------------------------ADMIN---------------------------------------------
 Route::get('/menu', [AdminController::class, 'home'])->name('dashboard');
 
@@ -31,10 +43,16 @@ Route::prefix('homestay')->group(function () {
 
 Route::prefix('perlengkapan')->group(function () {
     Route::get('index/{id_homestay}', [AdminController::class, 'perlengkapan'])->name('perlengkapan');
+    Route::post('create', [AdminController::class, 'add_perlengkapan'])->name('tambahperlengkapan');
+    Route::post('update/{id_perlengkapan}', [AdminController::class, 'update_perlengkapan'])->name('updateperlengkapan');
+    Route::get('destroy/{id_perlengkapan}', [AdminController::class, 'delete_perlengkapan'])->name('deleteperlengkapan');
 });
 
 Route::prefix('fasilitas')->group(function () {
     Route::get('index/{id_homestay}', [AdminController::class, 'fasilitas'])->name('fasilitas');
+    Route::post('create', [AdminController::class, 'add_fasilitas'])->name('tambahfasilitas');
+    Route::post('update/{id_fasilitas}', [AdminController::class, 'update_fasilitas'])->name('updatefasilitas');
+    Route::get('destroy/{id_fasilitas}', [AdminController::class, 'delete_fasilitas'])->name('deletefasilitas');
 });
 
 Route::get('/datasewa', [AdminController::class, 'datasewa'])->name('datasewa');

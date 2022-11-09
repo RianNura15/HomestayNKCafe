@@ -19,32 +19,69 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
-                      <th class="text-secondary opacity-7"></th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama User</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">KTP</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach($data as $item)
                     <tr>
-                      
+                      <td class="text-center">{{$loop->iteration}}</td>
+                      <td class="text-center">{{$item->name}}</td>
+                      <td class="text-center">
+                        <a href="{{asset('storage/'.$item->datauser->gambar_ktp)}}" target="_blank">
+                            <img src="{{asset('storage/'.$item->datauser->gambar_ktp)}}" width="80">
+                        </a>
+                      </td>
+                      <td class="text-center">
+                        <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detail{{$item->id}}">
+                          <i class="ni ni-archive-2"></i>
+                        </button>
+                        <a href="" class="btn btn-danger btn-sm">
+                          <i class="ni ni-fat-remove"></i>
+                        </a>
+                      </td>
                     </tr>
-                    <tr>
-                      
-                    </tr>
-                    <tr>
-                      
-                    </tr>
-                    <tr>
-                      
-                    </tr>
-                    <tr>
-                      
-                    </tr>
-                    <tr>
-                      
-                    </tr>
+                    <!-- Modal -->
+                    <div class="modal fade" id="detail{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Data User</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row">
+                                <div class="col-3">ID User</div>
+                                <div class="col-1">: </div>
+                                <div class="col-8"> {{$item->id}} </div>
+                                <div class="col-3">Nama User</div>
+                                <div class="col-1">: </div>
+                                <div class="col-8"> {{$item->name}} </div>
+                                <div class="col-3">Email User</div>
+                                <div class="col-1">: </div>
+                                <div class="col-8"> {{$item->email}}</div>
+                                <div class="col-3">Jenis Kelamin </div>
+                                <div class="col-1">: </div>
+                                <div class="col-8"> {{$item->jenis_kelamin}}</div>
+                                <div class="col-3">KTP </div>
+                                <div class="col-1">: </div>
+                                <div class="col-8"> {{$item->ktp}}</div>
+                                <div class="col-3">Alamat </div>
+                                <div class="col-1">: </div>
+                                <div class="col-8"> {{$item->alamat_user}}</div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
