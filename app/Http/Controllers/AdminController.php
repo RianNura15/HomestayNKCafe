@@ -12,6 +12,8 @@ use App\Models\Fasilitas;
 use App\Models\GambarHomestay;
 use App\Models\Perlengkapan;
 use App\Models\User;
+use App\Models\Bank;
+use App\Models\Laporan;
 use App\Http\Requests\LoginAdminRequest;
 use App\Http\Requests\HomestayRequest;
 use Illuminate\Support\Facades\Storage;
@@ -285,7 +287,8 @@ class AdminController extends Controller
 
     public function laporan()
     {
-        return view('admin.sewa.laporan');
+        $data = Laporan::latest()-get();
+        return view('admin.sewa.laporan', compact('data'));
     }
 
     public function datauser()
