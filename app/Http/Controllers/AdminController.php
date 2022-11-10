@@ -290,7 +290,7 @@ class AdminController extends Controller
 
     public function datauser()
     {
-        $data = User::with('datauser')->latest()->paginate(20);
+        $data = User::with('datauser')->where('level','Pelanggan')->latest()->paginate(20);
         return view('admin.user.user', compact('data'));
     }
 
