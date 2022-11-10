@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Homestay;
 use App\Models\DataSewa;
@@ -11,11 +12,35 @@ use App\Models\Fasilitas;
 use App\Models\GambarHomestay;
 use App\Models\Perlengkapan;
 use App\Models\User;
+use App\Http\Requests\LoginAdminRequest;
 use App\Http\Requests\HomestayRequest;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    public function login()
+    {
+        return view('admin.auth.login');
+    }
+
+    public function cekLogin(LoginAdminRequest $request)
+    {
+        if (Auth::attempt(['email' => $request->email,'password' => $request->password])) {
+            if (Auth::user()->status !== "Aktif") {
+                Auth::logout();
+                return redirect('loginadmin/index');
+            }else{
+                if (Auth::user()->level == "Admin") {
+                    return redirect('/menu');
+                }else{
+                    return redirect('loginadmin/index');                    
+                }
+            }
+        }else{
+            return redirect()->back()->with('salah','-');
+        }
+    }
+
     public function register()
     {
         return view('admin.auth.register');
@@ -37,8 +62,15 @@ class AdminController extends Controller
             Datauser::insert([
                 'user_id'=>$users->id,
             ]);
-            return redirect('login')->with('regis','-');
+            return redirect('loginadmin/index')->with('regis','-');
         }
+    }
+
+    public function logout(){
+    	Auth::logout();
+    	request()->session()->invalidate();
+    	request()->session()->regenerateToken();
+    	return redirect('loginadmin/index');
     }
 
     public function home()
@@ -262,8 +294,4 @@ class AdminController extends Controller
         return view('admin.user.user', compact('data'));
     }
 
-    public function login()
-    {
-        return view('admin.auth.login');
-    }
 }
