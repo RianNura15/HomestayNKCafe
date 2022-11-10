@@ -11,29 +11,21 @@
       <div class="row">
         <div class="col-12">
           <div class="card mb-4">
+              <div class="card-header">
+                <h6 style="float: left;">Data Fasilitas</h6>
+                <button type="button" class="btn btn-primary" style="float: right;" data-bs-toggle="modal" data-bs-target="#tambah">
+                  Tambah
+                </button>
+              </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
-                <div class="card-header pb-0" style="float: left;">
-                  <h6>Data Fasilitas</h6>
-                  <button type="button" class="btn btn-primary" style="margin-top: 20px; margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#tambah">
-                    Tambah
-                  </button>
-                </div>
-                <div class="card-header pb-0" style="float: right;">
-                  <div class="input-group">
-                    <form action="" method="GET">
-                      <input type="text" class="rounded border-1 pt-1 pb-1" style="float: left; margin-right: 10px; margin-top:13px;" placeholder="Cari" name="search">
-                      <button class="btn btn-primary" style="float: right; margin-top:10px;" type="submit">Cari</button>
-                    </form>
-                  </div>
-                </div>
-                <table class="table align-items-center mb-0">
+                <table class="table table-striped" id="table1">
                   <thead>
                     <tr>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Fasilitas</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Gambar</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
+                      <th class="text-center">No.</th>
+                      <th class="text-center">Nama Fasilitas</th>
+                      <th class="text-center">Gambar</th>
+                      <th class="text-center">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>

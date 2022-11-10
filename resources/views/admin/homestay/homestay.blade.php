@@ -12,11 +12,11 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header">
-                <h6 style="float: left;">Data Homestay</h6>
-                <button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  Tambah
-                </button>
-              </div>
+              <h6 style="float: left;">Data Homestay</h6>
+              <button type="button" class="btn btn-primary" style="float: right;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Tambah
+              </button>
+            </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table table-striped" id="table1">

@@ -16,14 +16,13 @@
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
+                <table class="table table-striped" id="table1">
                   <thead>
                     <tr>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Sewa</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Expired</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
-                      <th class="text-secondary opacity-7"></th>
+                      <th class="text-center">No.</th>
+                      <th class="text-center">Tanggal Sewa</th>
+                      <th class="text-center">Expired</th>
+                      <th class="text-center">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
