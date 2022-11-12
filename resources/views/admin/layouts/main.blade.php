@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="{{asset('admin/img/apple-icon.png')}}">
-  <link rel="icon" type="image/png" href="{{asset('admin/img/favicon.png')}}">
+  <link rel="icon" type="image/png" href="{{asset('admin/img/logo.png')}}">
   <title>
     @yield('title')
   </title>
@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="{{asset('admin/js/simple-database/style.css')}}">
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
+<body class="g-sidenav-show bg-gray-100">
     @yield('content')
 <!--   Core JS Files   -->
   <script src="{{asset('admin/js/core/popper.min.js')}}"></script>

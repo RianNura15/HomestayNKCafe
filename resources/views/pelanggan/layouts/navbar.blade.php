@@ -3,7 +3,7 @@
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
                 <a href="{{route('landingpage')}}" class="navbar-brand d-flex align-items-center text-center">
                     <div class="icon p-2 me-2">
-                        <img class="img-fluid" src="{{asset('pelanggan/img/icon-deal.png')}}" alt="Icon" style="width: 30px; height: 30px;">
+                        <img class="img-fluid" src="{{asset('pelanggan/img/logo.png')}}" alt="Icon" style="width: 40px; height: 40px;">
                     </div>
                     <h1 class="m-0 text-primary">NK Cafe Malang</h1>
                 </a>

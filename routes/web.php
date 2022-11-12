@@ -85,3 +85,5 @@ Route::get('/landingpage', [PelangganController::class, 'home'])->name('landingp
 Route::get('/about', [PelangganController::class, 'about'])->name('about');
 
 Route::get('/contactus', [PelangganController::class, 'contactus'])->name('contactus');
+
+Route::get('/detail/{id_homestay}', [PelangganController::class, 'detailhomestay'])->name('detailhomestay');

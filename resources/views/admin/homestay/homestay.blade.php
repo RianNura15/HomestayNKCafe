@@ -3,7 +3,7 @@
 @section('pages', 'Homestay')
 @section('halaman', 'Homestay')
 @section('content')
-  <div class="min-height-300 bg-primary position-absolute w-100"></div>
+  <div class="min-height-300 bg-nk position-absolute w-100"></div>
   @include('admin.layouts.sidebar')
   <main class="main-content position-relative border-radius-lg ">
     @include('admin.layouts.navbar')
@@ -42,19 +42,19 @@
                       </td>
                       <td class="text-center">
                         <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detail{{$item->id_homestay}}">
-                          <i class="ni ni-archive-2"></i>
+                          Detail
                         </button>
                         <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit{{$item->id_homestay}}">
-                          <i class="ni ni-settings-gear-65"></i>
+                          Edit
                         </button>
                         <a href="{{route('deletehomestay', $item->id_homestay)}}" class="btn btn-danger btn-sm">
-                          <i class="ni ni-fat-remove"></i>
+                          Hapus
                         </a>
                         <a href="{{route('perlengkapan', $item->id_homestay)}}" class="btn btn-success btn-sm">
-                          <i class="ni ni-briefcase-24"></i>
+                          Perlengkapan
                         </a>
                         <a href="{{route('fasilitas', $item->id_homestay)}}" class="btn btn-primary btn-sm">
-                          <i class="ni ni-istanbul"></i>
+                          Fasilitas
                         </a>
                       </td>
                     </tr>

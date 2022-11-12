@@ -3,7 +3,7 @@
 @section('pages', 'Sewa')
 @section('halaman', 'Sewa')
 @section('content')
-  <div class="min-height-300 bg-primary position-absolute w-100"></div>
+  <div class="min-height-300 bg-nk position-absolute w-100"></div>
   @include('admin.layouts.sidebar')
   <main class="main-content position-relative border-radius-lg ">
     @include('admin.layouts.navbar')

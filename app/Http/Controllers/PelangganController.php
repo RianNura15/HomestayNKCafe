@@ -74,16 +74,26 @@ class PelangganController extends Controller
 
     public function home()
     {
-        return view('pelanggan.index');
+        $data = Homestay::all();
+        return view('pelanggan.index', compact('data'));
     }
 
     public function about()
     {
-        return view('pelanggan.about');
+        $data = Homestay::all();
+        return view('pelanggan.about', compact('data'));
     }
 
     public function contactus()
     {
-        return view('pelanggan.contactus');
+        $data = Homestay::all();
+        return view('pelanggan.contactus', compact('data'));
+    }
+
+    public function detailhomestay($id_homestay)
+    {
+        $homestay = Homestay::where('id_homestay',$id_homestay)->get();
+        $data = Homestay::all();
+        return view('pelanggan.detailhomestay', compact('data','homestay'));
     }
 }
