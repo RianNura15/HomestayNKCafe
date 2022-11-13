@@ -12,7 +12,9 @@
         <div class="col-12">
           <div class="card mb-4">
               <div class="card-header">
-                <h6 style="float: left;">Data Fasilitas</h6>
+                @foreach($homestay as $item)
+                <h6 style="float: left;">Data Fasilitas {{$item->nama_homestay}}</h6>
+                @endforeach
                 <button type="button" class="btn btn-primary" style="float: right;" data-bs-toggle="modal" data-bs-target="#tambah">
                   Tambah
                 </button>

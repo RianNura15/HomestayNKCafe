@@ -20,7 +20,7 @@ class Homestay extends Model
 
     public function fasilitas()
     {
-        return $this->belongsTo(Fasilitas::class, 'homestay_id', 'id_homestay');
+        return $this->hasMany(Fasilitas::class, 'homestay_id', 'id_homestay');
     }
 
     public function gambar()

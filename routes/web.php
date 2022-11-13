@@ -15,9 +15,9 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 //AUTH ADMIN
 Route::prefix('loginadmin')->group(function () {
@@ -80,10 +80,17 @@ Route::group(['middleware' => ['auth','ceklevel:Admin']], function () {
 
 
 //----------------------------------------PELANGGAN------------------------------------------
-Route::get('/landingpage', [PelangganController::class, 'home'])->name('landingpage');
+Route::get('/', [PelangganController::class, 'home'])->name('landingpage');
 
 Route::get('/about', [PelangganController::class, 'about'])->name('about');
 
 Route::get('/contactus', [PelangganController::class, 'contactus'])->name('contactus');
 
 Route::get('/detail/{id_homestay}', [PelangganController::class, 'detailhomestay'])->name('detailhomestay');
+
+Route::group(['middleware' => ['auth','ceklevel:Pelanggan']], function () {
+    Route::prefix('profil')->group(function () {
+        Route::get('index', [PelangganController::class, 'profil'])->name('profilpelanggan');
+        Route::post('edit', [PelangganController::class, 'updateprofil'])->name('editprofil');
+    });
+});

@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Http\Requests\LoginPelangganRequest;
 use App\Http\Requests\RegisPelangganRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class PelangganController extends Controller
 {
@@ -30,7 +31,7 @@ class PelangganController extends Controller
                 return redirect('login/index')->with('non-aktif','-');
             }else{
                 if (Auth::user()->level == "Pelanggan") {
-                    return redirect('landingpage')->with('login','-');
+                    return redirect('/')->with('login','-');
                 }else{
                     return redirect('login/index');                    
                 }
@@ -74,8 +75,53 @@ class PelangganController extends Controller
 
     public function home()
     {
-        $data = Homestay::all();
+        $data = Homestay::with('fasilitas')->get();
         return view('pelanggan.index', compact('data'));
+    }
+
+    public function profil()
+    {
+        $profil = User::with('datauser')->where('id', Auth::user()->id)->first();
+        $data = Homestay::all();
+        return view('pelanggan.profil', compact('data','profil'));
+    }
+
+    public function updateprofil(Request $request)
+    {
+        $file = $request->file('gambar_ktp');
+        $image_name = '';
+
+        if($file){
+            $image_name = $file->store('data-ktpuser', 'public');
+            if(Storage::exists('public/' . $request->oldImage)){
+                Storage::delete('public/' . $request->oldImage);
+            }
+        }
+
+        if(!empty($request->file('gambar_ktp'))){
+            Datauser::where('user_id', Auth::user()->id)->update([
+                'no_telp' => $request->no_telp,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'alamat_user' => $request->alamat_user,
+                'gambar_ktp' => $image_name
+            ]);
+            User::where('id', Auth::user()->id)->update([
+                'name' => $request->name,
+                'email' => $request->email
+            ]);
+            return redirect()->back();
+        }else{
+            Datauser::where('user_id', Auth::user()->id)->update([
+                'no_telp' => $request->no_telp,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'alamat_user' => $request->alamat_user
+            ]);
+            User::where('id', Auth::user()->id)->update([
+                'name' => $request->name,
+                'email' => $request->email
+            ]);
+            return redirect()->back();
+        }
     }
 
     public function about()
@@ -92,8 +138,16 @@ class PelangganController extends Controller
 
     public function detailhomestay($id_homestay)
     {
+        $tb = Fasilitas::where('homestay_id', $id_homestay)->where('nama_fasilitas','Taman Belakang')->get();
+        $rk = Fasilitas::where('homestay_id', $id_homestay)->where('nama_fasilitas','Ruang Keluarga')->get();
+        $rm = Fasilitas::where('homestay_id', $id_homestay)->where('nama_fasilitas','Ruang Makan')->get();
+        $rt = Fasilitas::where('homestay_id', $id_homestay)->where('nama_fasilitas','Ruang Tamu')->get();
+        $dp = Fasilitas::where('homestay_id', $id_homestay)->where('nama_fasilitas','Dapur')->get();
+        $km = Fasilitas::where('homestay_id', $id_homestay)->where('nama_fasilitas','Kamar Mandi')->get();
+        $kt = Fasilitas::where('homestay_id', $id_homestay)->where('nama_fasilitas','Kamar Tidur')->get();
         $homestay = Homestay::where('id_homestay',$id_homestay)->get();
         $data = Homestay::all();
-        return view('pelanggan.detailhomestay', compact('data','homestay'));
+        $fasilitas = Fasilitas::where('homestay_id', $id_homestay)->get();
+        return view('pelanggan.detailhomestay', compact('data','homestay','fasilitas','kt','km','dp','rt','rm','rk','tb'));
     }
 }

@@ -173,9 +173,8 @@
                                         <a class="d-block h5 mb-2" href="{{route('detailhomestay', $item->id_homestay)}}">{{$item->nama_homestay}}</a>
                                     </div>
                                     <div class="d-flex border-top">
-                                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
                                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                        <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small>
+                                        <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>4 Bath</small>
                                     </div>
                                 </div>
                             </div>
