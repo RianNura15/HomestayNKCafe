@@ -33,6 +33,7 @@
   <script src="{{asset('admin/js/plugins/smooth-scrollbar.min.js')}}"></script>
   <script src="{{asset('admin/js/plugins/chartjs.min.js')}}"></script>
   <script src="{{asset('admin/js/simple-database/simple-database.js')}}"></script>
+  <script defer src="{{asset('admin/js/activePage.js')}}"></script>
   <script>
       // Simple Datatable
       let table1 = document.querySelector('#table1');

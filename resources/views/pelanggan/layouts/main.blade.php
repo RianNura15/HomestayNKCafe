@@ -9,7 +9,8 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="{{asset('img/favicon.ico')}}" rel="icon">
+    <link href="{{asset('img/logo.png')}}" rel="icon">
+    <link rel="icon" type="image/png" href="{{asset('admin/img/logo.png')}}">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +44,9 @@
 
     <!-- Template Javascript -->
     <script src="{{asset('pelanggan/js/main.js')}}"></script>
+    <script defer src="{{asset('pelanggan/js/activePage.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

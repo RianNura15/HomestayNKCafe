@@ -83,11 +83,7 @@ class AdminController extends Controller
     //-----------------------------------------------Homestay----------------------------------------------
     public function homestay(Request $request)
     {
-        if ($request->has('search')) {
-            $data = Homestay::where('nama_homestay','LIKE','%' .$request->search.'%')->paginate(10);
-        }else{
-            $data = Homestay::latest()->paginate(10);
-        }
+        $data = Homestay::latest()->get();
         return view('admin.homestay.homestay', compact('data'));
     }
 
@@ -281,19 +277,19 @@ class AdminController extends Controller
 
     public function datasewa()
     {
-        $data = DataSewa::with('user','homestay')->latest()->paginate(20);
+        $data = DataSewa::with('user','homestay')->latest()->get();
         return view('admin.sewa.sewa', compact('data'));
     }
 
     public function laporan()
     {
-        $data = Laporan::latest()-get();
+        $data = Laporan::latest()->get();
         return view('admin.sewa.laporan', compact('data'));
     }
 
     public function datauser()
     {
-        $data = User::with('datauser')->where('level','Pelanggan')->latest()->paginate(20);
+        $data = User::with('datauser')->where('level','Pelanggan')->latest()->get();
         return view('admin.user.user', compact('data'));
     }
 

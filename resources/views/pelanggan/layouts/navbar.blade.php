@@ -12,9 +12,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
-                        <a href="{{route('landingpage')}}" class="nav-item nav-link active">Home</a>
+                        <a href="{{route('landingpage')}}" class="nav-item nav-link">Home</a>
                         <a href="{{route('about')}}" class="nav-item nav-link">About</a>
-                        <a href="#" class="nav-item nav-link">Homestay</a>
                         <a href="{{route('contactus')}}" class="nav-item nav-link">Contact</a>
                         @auth
                         <div class="nav-item dropdown">
