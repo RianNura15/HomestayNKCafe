@@ -98,7 +98,10 @@
                                 <div class="col-6">
                                   <div class="form=group">
                                       <label>Nama Fasilitas</label>
-                                      <input type="text" class="form-control" name="nama_fasilitas" value="{{ $item->nama_fasilitas }}" autofocus>
+                                      <input type="text" class="form-control @error('nama_fasilitas')is-invalid @enderror" name="nama_fasilitas" value="{{ $item->nama_fasilitas }}" autofocus>
+                                      @error('nama_fasilitas')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                      @enderror
                                       @foreach($homestay as $hs)
                                       <input type="hidden" value="{{$hs->id_homestay}}" name="homestay_id">
                                       @endforeach
@@ -107,20 +110,29 @@
                                   <div class="col-4">
                                       <div class="form=group">
                                           <label>Jumlah Fasilitas</label>
-                                          <input type="number" class="form-control" name="jumlah_fasilitas" value="{{ $item->jumlah_fasilitas }}">
+                                          <input type="number" class="form-control @error('jumlah_fasilitas')is-invalid @enderror" name="jumlah_fasilitas" value="{{ $item->jumlah_fasilitas }}">
+                                          @error('jumlah_fasilitas')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                          @enderror
                                       </div>  
                                   </div>
                                   <div class="col-4">
                                       <div class="form=group">
                                           <label>Gambar Fasilitas</label>
                                           <input type="hidden" name="oldImage" value="{{ $item->gambar }}">
-                                          <input type="file" accept="image/*" class="form-control" name="gambar">
+                                          <input type="file" accept="image/*" class="form-control @error('gambar')is-invalid @enderror" name="gambar">
+                                          @error('gambar')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                          @enderror
                                       </div>  
                                   </div>
                                   <div class="col-12">
                                       <div class="form=group">
                                           <label>Deskripsi Fasilitas</label>
-                                          <input type="text" class="form-control" rows="5" name="desc_fasilitas" value="{{ $item->desc_fasilitas }}">
+                                          <input type="text" class="form-control @error('desc_fasilitas')is-invalid @enderror" rows="5" name="desc_fasilitas" value="{{ $item->desc_fasilitas }}">
+                                          @error('desc_fasilitas')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                          @enderror
                                       </div>  
                                   </div>
                             </div>
@@ -160,7 +172,10 @@
             <div class="col-6">
                 <div class="form=group">
                     <label>Nama Fasilitas</label>
-                    <input type="text" required="" class="form-control" name="nama_fasilitas" autofocus>
+                    <input type="text" required="" class="form-control @error('nama_fasilitas')is-invalid @enderror" name="nama_fasilitas" autofocus>
+                    @error('nama_fasilitas')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                     @foreach($homestay as $item)
                     <input type="hidden" value="{{$item->id_homestay}}" name="homestay_id">
                     @endforeach
@@ -169,19 +184,28 @@
             <div class="col-4">
                 <div class="form=group">
                     <label>Jumlah Fasilitas</label>
-                    <input type="number" required="" class="form-control" name="jumlah_fasilitas">
+                    <input type="number" required="" class="form-control @error('jumlah_fasilitas')is-invalid @enderror" name="jumlah_fasilitas">
+                    @error('jumlah_fasilitas')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>  
             </div>
             <div class="col-4">
                 <div class="form=group">
                     <label>Gambar Fasilitas</label>
-                    <input type="file" required="" accept="image/*" class="form-control" name="gambar">
+                    <input type="file" required="" accept="image/*" class="form-control @error('gambar')is-invalid @enderror" name="gambar">
+                    @error('gambar')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>  
             </div>
             <div class="col-12">
                 <div class="form=group">
                     <label>Deskripsi Fasilitas</label>
-                    <textarea class="form-control" required="" rows="5" name="desc_fasilitas"></textarea>
+                    <textarea class="form-control @error('desc_fasilitas')is-invalid @enderror" required="" rows="5" name="desc_fasilitas"></textarea>
+                    @error('desc_fasilitas')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>  
             </div>
         </div>

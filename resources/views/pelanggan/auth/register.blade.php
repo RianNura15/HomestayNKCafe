@@ -117,13 +117,22 @@
               <form role="form" action="{{route('addregpelanggan')}}" method="post">
                 @csrf
                 <div class="mb-3">
-                  <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="name">
+                  <input type="text" class="form-control @error('name')is-invalid @enderror" placeholder="Name" aria-label="Name" name="name" value="{{ old('name') }}" required>
+                  @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
                 </div>
                 <div class="mb-3">
-                  <input type="email" class="form-control" placeholder="Email" aria-label="Email" name="email">
+                  <input type="email" class="form-control @error('email')is-invalid @enderror" placeholder="Email" aria-label="Email" name="email" value="{{ old('email') }}" required>
+                  @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
                 </div>
                 <div class="mb-3">
-                  <input type="password" class="form-control" placeholder="Password" aria-label="Password" name="password">
+                  <input type="password" class="form-control @error('password')is-invalid @enderror" placeholder="Password" aria-label="Password" name="password" required>
+                  @error('password')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
                 </div>
                 <div class="form-check form-check-info text-start">
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>

@@ -104,32 +104,47 @@
                                 <div class="col-6">
                                     <div class="form=group">
                                         <label>Nama Homestay</label>
-                                        <input type="text" class="form-control" name="nama_homestay" value="{{$item->nama_homestay}}">
+                                        <input type="text" class="form-control @error('nama_homestay')is-invalid @enderror" name="nama_homestay" value="{{$item->nama_homestay}}">
+                                        @error('nama_homestay')
+                                          <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>  
                                 </div>
                                 <div class="col-4">
                                     <div class="form=group">
                                         <label>Jenis Homestay</label>
-                                        <input type="text" class="form-control" name="jenis_homestay" value="{{$item->jenis_homestay}}">
+                                        <input type="text" class="form-control @error('jenis_homestay')is-invalid @enderror" name="jenis_homestay" value="{{$item->jenis_homestay}}">
+                                        @error('jenis_homestay')
+                                          <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>  
                                 </div>
                                 <div class="col-4">
                                     <div class="form=group">
                                         <label>Harga Homestay</label>
-                                        <input type="number" class="form-control" name="harga" value="{{$item->harga}}">
+                                        <input type="number" class="form-control @error('harga')is-invalid @enderror" name="harga" value="{{$item->harga}}">
+                                        @error('harga')
+                                          <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>  
                                 </div>
                                 <div class="col-4">
                                     <div class="form=group">
                                         <label>Gambar Homestay</label>
                                         <input type="hidden" name="oldImage" value="{{ $item->gambar }}">
-                                        <input type="file" accept="image/*" class="form-control" name="gambar">
+                                        <input type="file" accept="image/*" class="form-control @error('gambar')is-invalid @enderror" name="gambar">
+                                        @error('gambar')
+                                          <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>  
                                 </div>
                                 <div class="col-12">
                                     <div class="form=group">
                                         <label>Deskripsi Homestay</label>
-                                        <input type="text" class="form-control" rows="5" name="desc_homestay" value="{{$item->desc_homestay}}">
+                                        <input type="text" class="form-control @error('desc_homestay')is-invalid @enderror" rows="5" name="desc_homestay" value="{{$item->desc_homestay}}">
+                                        @error('desc_homestay')
+                                          <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>  
                                 </div>
                             </div>
@@ -170,31 +185,46 @@
             <div class="col-6">
                 <div class="form=group">
                     <label>Nama Homestay</label>
-                    <input type="text" required="" class="form-control" name="nama_homestay" autofocus>
+                    <input type="text" required="" class="form-control @error('nama_homestay')is-invalid @enderror" name="nama_homestay" autofocus>
+                    @error('nama_homestay')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>  
             </div>
             <div class="col-4">
                 <div class="form=group">
                     <label>Jenis Homestay</label>
-                    <input type="text" required="" class="form-control" name="jenis_homestay">
+                    <input type="text" required="" class="form-control @error('jenis_homestay')is-invalid @enderror" name="jenis_homestay">
+                    @error('jenis_homestay')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>  
             </div>
             <div class="col-4">
                 <div class="form=group">
                     <label>Harga Homestay</label>
-                    <input type="number" required="" class="form-control" name="harga">
+                    <input type="number" required="" class="form-control @error('harga')is-invalid @enderror" name="harga">
+                    @error('harga')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>  
             </div>
             <div class="col-4">
                 <div class="form=group">
                     <label>Gambar Homestay</label>
-                    <input type="file" required="" accept="image/*" class="form-control" name="gambar">
+                    <input type="file" required="" accept="image/*" class="form-control @error('gambar')is-invalid @enderror" name="gambar">
+                    @error('gambar')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>  
             </div>
             <div class="col-12">
                 <div class="form=group">
                     <label>Deskripsi Homestay</label>
-                    <textarea class="form-control" required="" rows="5" name="desc_homestay"></textarea>
+                    <textarea class="form-control @error('desc_homestay')is-invalid @enderror" required="" rows="5" name="desc_homestay"></textarea>
+                    @error('desc_homestay')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>  
             </div>
         </div>

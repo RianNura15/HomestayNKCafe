@@ -31,10 +31,16 @@
                   <form role="form" action="{{route('cekloginadmin')}}" method="post">
                     @csrf
                     <div class="mb-3">
-                      <input type="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email" name="email">
+                      <input type="email" class="form-control form-control-lg @error('email')is-invalid @enderror" placeholder="Email" aria-label="Email" name="email" value="{{ old('email') }}" required autofocus>
+                      @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
                     </div>
                     <div class="mb-3">
-                      <input type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" name="password">
+                      <input type="password" class="form-control form-control-lg @error('password')is-invalid @enderror" placeholder="Password" aria-label="Password" name="password">
+                      @error('password')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
                     </div>
                     <div class="text-center">
                       <button class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign in</button>

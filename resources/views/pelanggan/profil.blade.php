@@ -45,38 +45,56 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" placeholder="Your Name" name="name" value="{{$profil->name}}">
+                                            <input type="text" class="form-control @error('name')is-invalid @enderror" id="name" placeholder="Your Name" name="name" value="{{$profil->name}}">
+                                            @error('name')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                             <label for="name">Nama</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="email" class="form-control" id="email" placeholder="Your Email" name="email" value="{{$profil->email}}">
+                                            <input type="email" class="form-control @error('email')is-invalid @enderror" id="email" placeholder="Your Email" name="email" value="{{$profil->email}}">
                                             <label for="email">Email</label>
+                                            @error('email')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="jenis_kelamin" class="form-control" id="jenis_kelamin" placeholder="Jenis Kelamin" name="jenis_kelamin" value="{{$profil->datauser->jenis_kelamin}}">
+                                            <input type="text" class="form-control @error('jenis_kelamin')is-invalid @enderror" id="jenis_kelamin" placeholder="Jenis Kelamin" name="jenis_kelamin" value="{{$profil->datauser->jenis_kelamin}}">
+                                            @error('jenis_kelamin')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                             <label for="jenis_kelamin">Jenis Kelamin</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="no_telp" placeholder="No. Telepon" name="no_telp" value="{{$profil->datauser->no_telp}}">
+                                            <input type="text" class="form-control @error('no_telp')is-invalid @enderror" id="no_telp" placeholder="No. Telepon" name="no_telp" value="{{$profil->datauser->no_telp}}">
+                                            @error('no_telp')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                             <label for="no_telp">No. Telepon</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="alamat_user" placeholder="Alamat" name="alamat_user" value="{{$profil->datauser->alamat_user}}">
+                                            <input type="text" class="form-control @error('alamat_user')is-invalid @enderror" id="alamat_user" placeholder="Alamat" name="alamat_user" value="{{$profil->datauser->alamat_user}}">
+                                            @error('alamat_user')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                             <label for="alamat_user">Alamat</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="hidden" name="oldImage" value="{{ $profil->datauser->gambar_ktp }}">
-                                            <input type="file" class="form-control" id="gambar_ktp" name="gambar_ktp" accept="image/*">
+                                            <input type="file" class="form-control @error('gambar_ktp')is-invalid @enderror" id="gambar_ktp" name="gambar_ktp" accept="image/*">
+                                            @error('gambar_ktp')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-12">

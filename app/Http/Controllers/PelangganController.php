@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use DateTime;
 use App\Http\Requests\LoginPelangganRequest;
 use App\Http\Requests\RegisPelangganRequest;
+use App\Http\Requests\UpdateProfilRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -89,7 +90,7 @@ class PelangganController extends Controller
         return view('pelanggan.profil', compact('data','profil'));
     }
 
-    public function updateprofil(Request $request)
+    public function updateprofil(UpdateProfilRequest $request)
     {
         $file = $request->file('gambar_ktp');
         $image_name = '';

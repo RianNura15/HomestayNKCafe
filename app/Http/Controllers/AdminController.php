@@ -16,6 +16,11 @@ use App\Models\Bank;
 use App\Models\Laporan;
 use App\Http\Requests\LoginAdminRequest;
 use App\Http\Requests\HomestayRequest;
+use App\Http\Requests\updateHomestayRequest;
+use App\Http\Requests\BankRequest;
+use App\Http\Requests\UpdateBankRequest;
+use App\Http\Requests\FasilitasRequest;
+use App\Http\Requests\UpdateFasilitasRequest;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -85,7 +90,7 @@ class AdminController extends Controller
     }
 
     //-----------------------------------------------Homestay----------------------------------------------
-    public function homestay(Request $request)
+    public function homestay()
     {
         $data = Homestay::latest()->get();
         return view('admin.homestay.homestay', compact('data'));
@@ -111,7 +116,7 @@ class AdminController extends Controller
         return redirect('/homestay/index')->with('success', 'Data Homestay Berhasil Disimpan');
     }
 
-    public function update_homestay(Request $request, $id_homestay)
+    public function update_homestay(UpdateHomestayRequest $request, $id_homestay)
     {
         $file = $request->file('gambar');
         $image_name = '';
@@ -222,7 +227,7 @@ class AdminController extends Controller
         return view('admin.homestay.fasilitas', compact('data','homestay'));
     }
 
-    public function add_fasilitas(Request $request)
+    public function add_fasilitas(FasilitasRequest $request)
     {
         $file = $request->file('gambar');
         $image_name = $file->getClientOriginalName();
@@ -242,7 +247,7 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Data Homestay Berhasil Disimpan');
     }
 
-    public function update_fasilitas(Request $request, $id_fasilitas)
+    public function update_fasilitas(UpdateFasilitasRequest $request, $id_fasilitas)
     {
         $file = $request->file('gambar');
         $image_name = '';
@@ -378,7 +383,7 @@ class AdminController extends Controller
         return view('admin.bank.bank', compact('data'));
     }
 
-    public function addbank(Request $request)
+    public function addbank(BankRequest $request)
     {
         Bank::create([
             'nama_bank' => $request->nama_bank,
@@ -389,7 +394,7 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function updatebank(Request $request, $id_bank)
+    public function updatebank(UpdateBankRequest $request, $id_bank)
     {
         Bank::where('id_bank', $id_bank)->update([
             'nama_bank' => $request->nama_bank,

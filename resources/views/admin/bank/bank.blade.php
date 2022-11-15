@@ -60,19 +60,28 @@
                                 <div class="col-6">
                                     <div class="form=group">
                                         <label>Nama Bank</label>
-                                        <input type="text" class="form-control" name="nama_bank" value="{{$item->nama_bank}}">
+                                        <input type="text" class="form-control @error('nama_bank')is-invalid @enderror" name="nama_bank" value="{{$item->nama_bank}}">
+                                        @error('nama_bank')
+                                          <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>  
                                 </div>
                                 <div class="col-4">
                                     <div class="form=group">
                                         <label>Nama Pemilik</label>
-                                        <input type="text" class="form-control" name="nama_pemilik" value="{{$item->nama_pemilik}}">
+                                        <input type="text" class="form-control @error('nama_pemilik')is-invalid @enderror" name="nama_pemilik" value="{{$item->nama_pemilik}}">
+                                        @error('nama_pemilik')
+                                          <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>  
                                 </div>
                                 <div class="col-4">
                                     <div class="form=group">
                                         <label>No. Rekening</label>
-                                        <input type="number" class="form-control" name="no_rek" value="{{$item->no_rek}}">
+                                        <input type="number" class="form-control @error('no_rek')is-invalid @enderror" name="no_rek" value="{{$item->no_rek}}">
+                                        @error('no_rek')
+                                          <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>  
                                 </div>
                             </div>
@@ -113,19 +122,28 @@
             <div class="col-6">
                 <div class="form=group">
                     <label>Nama Bank</label>
-                    <input type="text" required="" class="form-control" name="nama_bank" autofocus>
+                    <input type="text" required="" class="form-control @error('nama_bank')is-invalid @enderror" name="nama_bank" autofocus>
+                    @error('nama_bank')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>  
             </div>
             <div class="col-6">
                 <div class="form=group">
                     <label>Nama Pemilik</label>
-                    <input type="text" required="" class="form-control" name="nama_pemilik">
+                    <input type="text" required="" class="form-control @error('nama_pemilik')is-invalid @enderror" name="nama_pemilik">
+                    @error('nama_pemilik')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>  
             </div>
             <div class="col-6">
                 <div class="form=group">
                     <label>No. Rekening</label>
-                    <input type="number" required="" class="form-control" name="no_rek">
+                    <input type="number" required="" class="form-control @error('no_rek')is-invalid @enderror" name="no_rek">
+                    @error('no_rek')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>  
             </div>
         </div>
