@@ -113,7 +113,7 @@ class AdminController extends Controller
             'desc_homestay' => $request->desc_homestay
         ]);
 
-        return redirect('/homestay/index')->with('success', 'Data Homestay Berhasil Disimpan');
+        return redirect('/homestay/index')->with('addhomestay', '-');
     }
 
     public function update_homestay(UpdateHomestayRequest $request, $id_homestay)
@@ -145,12 +145,12 @@ class AdminController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'data berhasil diupdate');
+        return redirect()->back()->with('updatehomestay', '-');
     }
 
     public function delete_homestay($id_homestay){
        Homestay::where('id_homestay', $id_homestay)->delete();
-       return redirect()->back()->with('toast_success', 'Berhasil Menghapus Data');
+       return redirect()->back()->with('deletehomestay', '-');
     }
 
     public function perlengkapan($id_homestay)
@@ -244,7 +244,7 @@ class AdminController extends Controller
             'gambar' => $image_name
         ]);
 
-        return redirect()->back()->with('success', 'Data Homestay Berhasil Disimpan');
+        return redirect()->back()->with('addfasilitas', '-');
     }
 
     public function update_fasilitas(UpdateFasilitasRequest $request, $id_fasilitas)
@@ -276,12 +276,12 @@ class AdminController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'data berhasil diupdate');
+        return redirect()->back()->with('updatefasilitas', '-');
     }
 
     public function delete_fasilitas($id_fasilitas){
        Fasilitas::where('id_fasilitas', $id_fasilitas)->delete();
-       return redirect()->back()->with('toast_success', 'Berhasil Menghapus Data');
+       return redirect()->back()->with('deletefasilitas', '-');
     }
 
     public function datasewa()
@@ -317,7 +317,7 @@ class AdminController extends Controller
 		DataSewa::where('id_sewa',$id_sewa)->update([
 			'setuju' => '1',
 		]);
-		return redirect('/datasewa/index');
+		return redirect('/datasewa/index')->with('setuju','-');
 	}
 
     public function batal(Request $request, $id_sewa)
@@ -372,7 +372,7 @@ class AdminController extends Controller
 				User::where('id', $id)->update([
 					'status' => 'Aktif',
 				]);
-				return redirect()->back();
+				return redirect()->back()->with('updatestatus','-');
 			}
 		}
     }
@@ -391,7 +391,7 @@ class AdminController extends Controller
             'no_rek' => $request->no_rek,
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('addbank','-');
     }
 
     public function updatebank(UpdateBankRequest $request, $id_bank)
@@ -402,12 +402,12 @@ class AdminController extends Controller
             'no_rek' => $request->no_rek
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('updatebank','-');
     }
 
     public function deletebank($id_bank){
        Bank::where('id_bank', $id_bank)->delete();
-       return redirect()->back();
+       return redirect()->back()->with('deletebank','-');
     }
 
 }

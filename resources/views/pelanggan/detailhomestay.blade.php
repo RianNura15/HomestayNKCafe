@@ -144,7 +144,15 @@
                         <p><i class="fa fa-check text-primary me-3"></i>3 menit dari Apartment Begawan & Kampus UMM</p>
                         <p><i class="fa fa-check text-primary me-3"></i>5 menit dari kampus UNISMA</p>
                         <p><i class="fa fa-check text-primary me-3"></i>10 menit dari kampus UB & kampus UIN</p>
+                        @auth
+                        @if(auth()->user()->status == 'Aktif')
                         <a class="btn btn-primary py-3 px-5 mt-3" href="{{route('transaksi', $item->id_homestay)}}">Booking {{$item->nama_homestay}}</a>
+                        @elseif(auth()->user()->status !== 'Aktif')
+                        <a class="btn btn-primary py-3 px-5 mt-3" href="">Booking {{$item->nama_homestay}}</a>
+                        @endif
+                        @else
+                        <a class="btn btn-primary py-3 px-5 mt-3" href="{{route('loginpelanggan')}}">Booking {{$item->nama_homestay}}</a>
+                        @endauth
                     </div>
                 </div>
                 @endforeach

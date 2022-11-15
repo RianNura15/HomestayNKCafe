@@ -124,7 +124,7 @@ class PelangganController extends Controller
                 'name' => $request->name,
                 'email' => $request->email
             ]);
-            return redirect()->back();
+            return redirect()->back()->with('updateprofil','-');
         }
     }
 
@@ -190,7 +190,7 @@ class PelangganController extends Controller
             'buktipembayaran' => '-',
             'status' => '1'
         ]);
-        return redirect('/riwayatsewa');
+        return redirect('/riwayatsewa/index')->with('addbooking','-');
     }
 
     public function buktipembayaran(Request $request)
@@ -209,7 +209,7 @@ class PelangganController extends Controller
             'buktipembayaran' => $image_name,
             'keterangan' => 'Pending'
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('buktipembayaran','-');
     }
 
     public function batal(Request $request, $id_sewa)
@@ -220,7 +220,7 @@ class PelangganController extends Controller
             'status' => '0'
 		]);
 
-		return redirect()->back();
+		return redirect()->back()->with('batal','-');
 	}
 
     public function buktitransaksi($id_sewa)

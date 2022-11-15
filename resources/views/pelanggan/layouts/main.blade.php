@@ -47,13 +47,15 @@
     <!-- Template Javascript -->
     <script src="{{asset('pelanggan/js/main.js')}}"></script>
     <script defer src="{{asset('pelanggan/js/activePage.js')}}"></script>
+    <script src="{{asset('admin/extensions/sweetalert2.js')}}"></script>
+    <script src="{{asset('admin/sweetalert2/sweetalert2.all.min.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script>
       // Simple Datatable
       let table1 = document.querySelector('#table1');
       let dataTable = new simpleDatatables.DataTable(table1);
     </script>
-
+    @include('admin.layouts.notif')
 </body>
 
 </html>
