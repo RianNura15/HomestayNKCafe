@@ -73,10 +73,10 @@ Route::group(['middleware' => ['auth','ceklevel:Admin']], function () {
     
     Route::prefix('datasewa')->group(function () {
         Route::get('index', [AdminController::class, 'datasewa'])->name('datasewa');
-        Route::get('cek', [AdminController::class, 'cekdatasewa'])->name('cekdatasewa');
-        Route::get('konfirmasi', [AdminController::class, 'konfirmasi'])->name('konfirmasi');
-        Route::get('batal', [AdminController::class, 'batal'])->name('batal');
-        Route::get('setuju', [AdminController::class, 'setuju'])->name('setuju');
+        Route::get('cek/{id_sewa}', [AdminController::class, 'cekdatasewa'])->name('cekdatasewa');
+        Route::get('konfirmasi/{id_sewa}', [AdminController::class, 'konfirmasi'])->name('konfirmasi');
+        Route::get('batal/{id_sewa}', [AdminController::class, 'batal'])->name('batal');
+        Route::get('setuju/{id_sewa}', [AdminController::class, 'setuju'])->name('setuju');
     });
     
     Route::prefix('laporan')->group(function () {

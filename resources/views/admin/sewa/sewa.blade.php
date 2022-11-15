@@ -21,6 +21,7 @@
                     <tr>
                       <th class="text-center">No.</th>
                       <th class="text-center">User</th>
+                      <th class="text-center">Homestay</th>
                       <th class="text-center">Tanggal Sewa</th>
                       <th class="text-center">Expired</th>
                       <th class="text-center">Mulai Sewa</th>
@@ -36,22 +37,54 @@
                     <tr>
                       <td class="text-center">{{$loop->iteration}}</td>
                       <td class="text-center">{{$item->user->name}}</td>
-                      <td class="text-center">{{ \Carbon\Carbon::parse($item->tanggal_sewa)->format('d F Y') }}</td>
-                      <td class="text-center">{{ \Carbon\Carbon::parse($item->expired)->locale('id')->diffForHumans() }}</td>
+                      <td class="text-center">{{$item->homestay->nama_homestay}}</td>
+                      <td class="text-center">{{$item->tanggal_sewa}}</td>
+                      <td class="text-center">
+                        @if($item->keterangan == '-')
+                        {{ \Carbon\Carbon::parse($item->expired)->locale('id')->diffForHumans() }}
+                        @elseif($item->keterangan == 'Pending')
+                        <span class="badge bg-warning">Menunggu</span>
+                        @elseif($item->keterangan == 'Aktif' || $item->keterangan == 'Mulai' || $item->keterangan == 'Selesai')
+                        <span class="badge bg-success">Clear</span>
+                        @elseif($item->keterangan == 'Expired')
+                        <span class="badge bg-danger">Expired</span>
+                        @elseif($item->keterangan == 'Di Batalkan')
+                        <span class="badge bg-danger">Batal</span>
+                        @endif
+                      </td>
                       <td class="text-center">{{ \Carbon\Carbon::parse($item->tanggal_mulai)->format('d F Y') }}</td>
                       <td class="text-center">{{ \Carbon\Carbon::parse($item->tanggal_selesai)->format('d F Y') }}</td>
-                      <td class="text-center">{{$item->keterangan}}</td>
-                      <td class="text-center">{{$item->buktipembayaran}}</td>
-                      <td class="text-center">Rp. {{number_format($item->hargasewa,0,",",".")}}</td>
+                      <td class="text-center">
+                        @if($item->keterangan == 'Pending')
+                        <span class="badge bg-warning">Lakukan <br> Pengecekan</span>
+                        @elseif($item->keterangan == 'Expired')
+                        <span class="badge bg-danger">Expired</span>
+                        @elseif($item->keterangan == 'Aktif')
+                        <span class="badge bg-info">Aktif</span>
+                        @elseif($item->keterangan == 'Mulai')
+                        <span class="badge bg-success">Mulai</span>
+                        @elseif($item->keterangan == 'Selesai')
+                        <span class="badge bg-success">Selesai</span>
+                        @elseif($item->keterangan == '-' || $item->setuju == '0')
+                        <span class="badge bg-warning">Menunggu <br> Persetujuan</span>
+                        @endif
+                      </td>
+                      <td class="text-center">
+                        @if($item->buktipembayaran == '-')
+                        <span class="badge bg-danger">Belum Dibayar</span>
+                        @else
+                        <a href="{{asset('storage/'.$item->buktipembayaran)}}" target="_blank">
+                            <img src="{{asset('storage/'.$item->buktipembayaran)}}" width="80">
+                        </a>
+                        @endif
+                      </td>
+                      <td class="text-center">Rp. {{number_format($item->total,0,",",".")}}</td>
                       <td class="text-center">
                         <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detail{{$item->id_fasilitas}}">
-                          <i class="ni ni-archive-2"></i>
+                          Detail
                         </button>
-                        <a href="" class="btn btn-danger btn-sm">
-                          <i class="ni ni-fat-remove"></i>
-                        </a>
-                        <a href="" class="btn btn-danger btn-sm">
-                          <i class="ni ni-fat-remove"></i>
+                        <a href="{{route('cekdatasewa', $item->id_sewa)}}" class="btn btn-success btn-sm text-white">
+                          Cek
                         </a>
                       </td>
                     </tr>

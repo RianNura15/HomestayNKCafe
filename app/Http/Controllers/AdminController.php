@@ -77,7 +77,11 @@ class AdminController extends Controller
 
     public function home()
     {
-        return view('admin.index');
+        $aktif = DataSewa::where('keterangan','Aktif')->count();
+        $user = User::where('level','Pelanggan')->count();
+        $pemasukan = Laporan::sum('total');
+        $pending = DataSewa::where('keterangan','Pending')->count();
+        return view('admin.index', compact('aktif','user','pemasukan','pending'));
     }
 
     //-----------------------------------------------Homestay----------------------------------------------
@@ -283,14 +287,12 @@ class AdminController extends Controller
 
     public function cekdatasewa($id_sewa)
     {
-        $data = DataSewa::with('user','homestay')->get();
+        $data = DataSewa::with('user','homestay')->where('id_sewa',$id_sewa)->get();
         return view('admin.sewa.cek', compact('data'));
     }
 
 	public function konfirmasi(Request $request, $id_sewa)
 	{
-        $tanggal = Carbon::now()->format('Y-m-d');
-
 		DataSewa::where('id_sewa',$id_sewa)->update([
 			'konfirmasi' => 'Sudah di Konfirmasi',
 			'keterangan' => 'Aktif',
@@ -298,10 +300,11 @@ class AdminController extends Controller
 
 		Laporan::create([
 	    'sewa_id' => $request->sewa_id,
-	    'tanggal' => $tanggal,
+	    'tanggal' => $request->tanggal,
+        'total' => $request->total,
 		'status' => 'Lunas'
 	  ]);
-		return redirect('/datasewa')->with('konfirmasi','-');
+		return redirect('/datasewa/index')->with('konfirmasi','-');
 	}
 
     public function setuju(Request $request, $id_sewa)
@@ -309,7 +312,7 @@ class AdminController extends Controller
 		DataSewa::where('id_sewa',$id_sewa)->update([
 			'setuju' => '1',
 		]);
-		return redirect('/datasewa')->with('setuju','-');
+		return redirect('/datasewa/index');
 	}
 
     public function batal(Request $request, $id_sewa)
@@ -321,13 +324,14 @@ class AdminController extends Controller
             'status' => '0'
 		]);
 
-		return redirect('/datasewa')->with('batal','-');
+		return redirect('/datasewa/index')->with('batal','-');
 	}
 
     public function laporan()
     {
-        $data = Laporan::latest()->get();
-        return view('admin.sewa.laporan', compact('data'));
+        $data = Laporan::with('data_sewa')->latest()->get();
+        $total = Laporan::sum('total');
+        return view('admin.sewa.laporan', compact('data','total'));
     }
 
     public function cetaklaporan(Request $request)
@@ -337,11 +341,11 @@ class AdminController extends Controller
 
 		if($tanggal_mulai AND $tanggal_selesai){
 			$data = Laporan::with('data_sewa')->whereBetween('tanggal',[$tanggal_mulai, $tanggal_selesai])->get();
-			$sum_total = Laporan::whereBetween('tanggal', [$tanggal_mulai, $tanggal_selesai])->sum('total');
+			$total = Laporan::whereBetween('tanggal', [$tanggal_mulai, $tanggal_selesai])->sum('total');
 		}else{
 			$data = Laporan::with('data_sewa')->get();
 		}
-		return view('admin.sewa.cetaklaporan', compact('data','sum_total','tanggal_mulai','tanggal_selesai'));
+		return view('admin.sewa.cetaklaporan', compact('data','total','tanggal_mulai','tanggal_selesai'));
 	}
 
     public function datauser()

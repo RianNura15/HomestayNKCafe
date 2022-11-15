@@ -53,7 +53,7 @@
                                     <td class="text-center">
                                         @if($item->keterangan == '-')
                                         {{ \Carbon\Carbon::parse($item->expired)->locale('id')->diffForHumans() }}
-                                        @elseif($item->keterangan == 'Sedang di Cek')
+                                        @elseif($item->keterangan == 'Pending')
                                         <span class="badge bg-warning">Menunggu</span>
                                         @elseif($item->keterangan == 'Aktif' || $item->keterangan == 'Mulai' || $item->keterangan == 'Selesai')
                                         <span class="badge bg-success">Clear</span>
@@ -81,8 +81,8 @@
                                     </td>
 
                                     <td class="text-center">
-                                        @if($item->keterangan == 'Sedang di Cek')
-                                        <span class="badge bg-warning">Sedang di Cek</span>
+                                        @if($item->keterangan == 'Pending')
+                                        <span class="badge bg-warning">Pending</span>
                                         @elseif($item->keterangan == 'Expired')
                                         <span class="badge bg-danger">Expired</span>
                                         @elseif($item->keterangan == 'Aktif')
@@ -100,14 +100,19 @@
                                         <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detail{{$item->id_sewa}}">
                                         Detail
                                         </button>
-                                        @if($item->buktipembayaran == '-' || $item->keterangan == '-' || $item->keterangan == 'Sedang di Cek')
+                                        @if($item->keterangan !== 'Di Batalkan' && $item->keterangan !== 'Expired' && $item->setuju == '1')
                                         <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#upload{{$item->id_sewa}}">
                                         Bayar
                                         </button>
                                         @endif
-                                        @if($item->buktipembayaran == '-' || $item->keterangan == '-')
+                                        @if($item->buktipembayaran == '-' && $item->keterangan == '-')
                                         <a href="" class="btn btn-danger btn-sm">
                                         Batal
+                                        </a>
+                                        @endif
+                                        @if($item->keterangan=="Aktif" || $item->keterangan=='Selesai' || $item->keterangan=='Mulai')
+                                        <a href="{{route('buktitransaksi',$item->id_sewa)}}" target="_blank" class="btn btn-sm btn-warning">
+                                        struk
                                         </a>
                                         @endif
                                     </td>
@@ -187,14 +192,15 @@
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Upload Bukti Pembayaran</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form method="post" action="" enctype="multipart/form-data">
+                                    <form method="post" action="{{route('buktipembayaran')}}" enctype="multipart/form-data">
                                         @csrf
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="form-group">
                                                 <label>Upload Bukti Pembayaran</label>
+                                                <input type="hidden" name="oldImage" value="{{ $item->buktipembayaran }}">
                                                 <input type="hidden" value="{{$item->id_sewa}}" name="id_sewa">
-                                                <input type="file" accept="image/*" class="form-control" name="gambar">
+                                                <input type="file" accept="image/*" class="form-control" name="buktipembayaran">
                                             </div>
                                         </div>
                                     </div>

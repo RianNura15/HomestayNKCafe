@@ -13,9 +13,18 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
+
+    protected $command = [
+        'App\Console\Commands\ExpiredCommand',
+        'App\Console\Commands\MulaiCommand',
+        'App\Console\Commands\SelesaiCommand',
+    ];
+
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('sewa:expired')->hourly();
+        $schedule->command('sewa:mulai')->hourly();
+        $schedule->command('sewa:selesai')->hourly();
     }
 
     /**
