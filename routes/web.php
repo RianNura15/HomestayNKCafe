@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PengelolaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,19 @@ Route::prefix('registrasi')->group(function () {
 });
 
 Route::get('logout', [PelangganController::class, 'logout'])->name('logoutpelanggan');
+
+//AUTH PENGELOLA
+Route::prefix('loginpengelola')->group(function () {
+    Route::get('index', [PengelolaController::class, 'login'])->name('loginpengelola');
+    Route::post('masuk', [PengelolaController::class, 'cekLogin'])->name('cekloginpengelola');
+});
+
+Route::prefix('registerpengelola')->group(function () {
+    Route::get('index', [PengelolaController::class, 'register'])->name('registerpengelola');
+    Route::post('register', [PengelolaController::class, 'addreg'])->name('addregpengelola');
+});
+
+Route::get('logoutpengelola', [PengelolaController::class, 'logout'])->name('logoutpengelola');
 
 //-----------------------------------------ADMIN---------------------------------------------
 
@@ -125,4 +139,26 @@ Route::group(['middleware' => ['auth','ceklevel:Pelanggan']], function () {
         Route::get('buktitransaksi/{id_sewa}', [PelangganController::class, 'buktitransaksi'])->name('buktitransaksi');
         Route::get('batal/{id_sewa}', [PelangganController::class, 'batal'])->name('batal');
     });
+});
+
+//----------------------------------------PENGELOLA------------------------------------------
+Route::group(['middleware' => ['auth','ceklevel:Pengelola']], function () {
+    Route::get('/menupengelola', [PengelolaController::class, 'home'])->name('dashboardpengelola');
+
+    Route::prefix('datasewapengelola')->group(function () {
+        Route::get('index', [PengelolaController::class, 'datasewa'])->name('datasewapengelola');
+    });
+    
+    Route::prefix('laporanpengelola')->group(function () {
+        Route::get('index', [PengelolaController::class, 'laporan'])->name('laporanpengelola');
+        Route::get('cetak', [PengelolaController::class, 'cetaklaporan'])->name('cetaklaporanpengelola');
+    });
+
+    Route::prefix('karyawan')->group(function () {
+        Route::get('index', [PengelolaController::class, 'karyawan'])->name('karyawan');
+        Route::post('create', [PengelolaController::class, 'add_karyawan'])->name('tambahkaryawan');
+        Route::post('update/{id_karyawan}', [PengelolaController::class, 'update_karyawan'])->name('updatekaryawan');
+        Route::get('destroy/{id_karyawan}', [PengelolaController::class, 'delete_karyawan'])->name('deletekaryawan');
+    });
+
 });

@@ -155,7 +155,7 @@
 </script>
 @endif
 
-@if(session('karyawanadd'))
+@if(session('addkaryawan'))
 <script type="text/javascript">
 	document.getElementById('success');
 	Swal.fire({
@@ -164,7 +164,7 @@
 	});
 </script>
 @endif
-@if(session('karyawanup'))
+@if(session('updatekaryawan'))
 <script type="text/javascript">
 	document.getElementById('success');
 	Swal.fire({
@@ -174,11 +174,11 @@
 	});
 </script>
 @endif
-@if(session('karyawandel'))
+@if(session('deletekaryawan'))
 <script type="text/javascript">
 	document.getElementById('warning');
 	Swal.fire({
-		icon: "warning",
+		icon: "success",
 		title: "Berhasil Delete Data",
 		text: "Data Karyawan Berhasil di Hapus",
 	});
@@ -481,8 +481,8 @@
 	document.getElementById('warning');
 	Swal.fire({
 		icon: "warning",
-		title: "Username Sama",
-		text: "Username tersebut telah di Gunakan."
+		title: "Email Sama",
+		text: "Email tersebut telah di Gunakan."
 	});
 </script>
 @endif

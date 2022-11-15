@@ -15,11 +15,14 @@ class CreateKaryawansTable extends Migration
     {
         Schema::create('karyawans', function (Blueprint $table) {
             $table->id('id_karyawan');
+            $table->foreignId('user_id')->nullable()->constrained('users', 'id')
+                ->onUpdate('no action')
+                ->onDelete('no action');
             $table->string('nama_karyawan')->nullable();
             $table->string('jenis_kelamin')->nullable();
             $table->string('agama')->nullable();
-            $table->string('no_ktp')->nullable();
             $table->string('gambar_ktp')->nullable();
+            $table->string('no_telp')->nullable();
             $table->timestamps();
         });
     }

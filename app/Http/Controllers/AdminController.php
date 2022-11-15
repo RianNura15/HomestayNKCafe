@@ -35,10 +35,10 @@ class AdminController extends Controller
         if (Auth::attempt(['email' => $request->email,'password' => $request->password])) {
             if (Auth::user()->status !== "Aktif") {
                 Auth::logout();
-                return redirect('loginadmin/index');
+                return redirect('loginadmin/index')->with('non-aktif','-');
             }else{
                 if (Auth::user()->level == "Admin") {
-                    return redirect('/menu');
+                    return redirect('/menu')->with('login','-');
                 }else{
                     return redirect('loginadmin/index');                    
                 }
