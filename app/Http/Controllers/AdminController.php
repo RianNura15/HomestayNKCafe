@@ -281,16 +281,124 @@ class AdminController extends Controller
         return view('admin.sewa.sewa', compact('data'));
     }
 
+    public function cekdatasewa($id_sewa)
+    {
+        $data = DataSewa::with('user','homestay')->get();
+        return view('admin.sewa.cek', compact('data'));
+    }
+
+	public function konfirmasi(Request $request, $id_sewa)
+	{
+        $tanggal = Carbon::now()->format('Y-m-d');
+
+		DataSewa::where('id_sewa',$id_sewa)->update([
+			'konfirmasi' => 'Sudah di Konfirmasi',
+			'keterangan' => 'Aktif',
+		]);
+
+		Laporan::create([
+	    'sewa_id' => $request->sewa_id,
+	    'tanggal' => $tanggal,
+		'status' => 'Lunas'
+	  ]);
+		return redirect('/datasewa')->with('konfirmasi','-');
+	}
+
+    public function setuju(Request $request, $id_sewa)
+	{
+		DataSewa::where('id_sewa',$id_sewa)->update([
+			'setuju' => '1',
+		]);
+		return redirect('/datasewa')->with('setuju','-');
+	}
+
+    public function batal(Request $request, $id_sewa)
+	{
+		DataSewa::where('id_sewa',$id_sewa)->update([
+			'konfirmasi' => 'Batal',
+			'keterangan' => 'Di Batalkan',
+			'setuju' => '0',
+            'status' => '0'
+		]);
+
+		return redirect('/datasewa')->with('batal','-');
+	}
+
     public function laporan()
     {
         $data = Laporan::latest()->get();
         return view('admin.sewa.laporan', compact('data'));
     }
 
+    public function cetaklaporan(Request $request)
+	{
+		$tanggal_mulai = $request->tanggal_mulai;
+		$tanggal_selesai = $request->tanggal_selesai;
+
+		if($tanggal_mulai AND $tanggal_selesai){
+			$data = Laporan::with('data_sewa')->whereBetween('tanggal',[$tanggal_mulai, $tanggal_selesai])->get();
+			$sum_total = Laporan::whereBetween('tanggal', [$tanggal_mulai, $tanggal_selesai])->sum('total');
+		}else{
+			$data = Laporan::with('data_sewa')->get();
+		}
+		return view('admin.sewa.cetaklaporan', compact('data','sum_total','tanggal_mulai','tanggal_selesai'));
+	}
+
     public function datauser()
     {
         $data = User::with('datauser')->where('level','Pelanggan')->latest()->get();
         return view('admin.user.user', compact('data'));
+    }
+
+    public function updatestatususer($id)
+    {
+        $data= User::where('id', $id)->first();
+		if ($data) {
+			if ($data->status == "Aktif") {
+				User::where('id', $id)->update([
+					'status' => 'Nonaktif',
+				]);
+				return redirect()->back();
+			}else{
+				User::where('id', $id)->update([
+					'status' => 'Aktif',
+				]);
+				return redirect()->back();
+			}
+		}
+    }
+
+    public function bank()
+    {
+        $data = Bank::latest()->get();
+        return view('admin.bank.bank', compact('data'));
+    }
+
+    public function addbank(Request $request)
+    {
+        Bank::create([
+            'nama_bank' => $request->nama_bank,
+            'nama_pemilik' => $request->nama_pemilik,
+            'no_rek' => $request->no_rek,
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function updatebank(Request $request, $id_bank)
+    {
+        Bank::where('id_bank', $id_bank)->update([
+            'nama_bank' => $request->nama_bank,
+            'nama_pemilik' => $request->nama_pemilik,
+            'no_rek' => $request->no_rek
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function deletebank($id_bank){
+       Bank::where('id_bank', $id_bank)->delete();
+       return redirect()->back();
     }
 
 }

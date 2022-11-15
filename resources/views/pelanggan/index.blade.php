@@ -25,7 +25,7 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">Homestay Types</h1>
+                    <h1 class="mb-3">NK Cafe Malang</h1>
                     <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
                 </div>
                 <div class="row g-4">
@@ -35,8 +35,8 @@
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="{{asset('pelanggan/img/icon-apartment.png')}}" alt="Icon">
                                 </div>
-                                <h6>Apartment</h6>
-                                <span>123 Properties</span>
+                                <h6>Homestay</h6>
+                                <span>7 Properties</span>
                             </div>
                         </a>
                     </div>
@@ -46,8 +46,8 @@
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="{{asset('pelanggan/img/icon-villa.png')}}" alt="Icon">
                                 </div>
-                                <h6>Villa</h6>
-                                <span>123 Properties</span>
+                                <h6>Restaurant</h6>
+                                <span>1 Properties</span>
                             </div>
                         </a>
                     </div>
@@ -57,8 +57,8 @@
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="{{asset('pelanggan/img/icon-house.png')}}" alt="Icon">
                                 </div>
-                                <h6>Home</h6>
-                                <span>123 Properties</span>
+                                <h6>Parkiran</h6>
+                                <span>1 Properties</span>
                             </div>
                         </a>
                     </div>
@@ -68,8 +68,8 @@
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="{{asset('pelanggan/img/icon-housing.png')}}" alt="Icon">
                                 </div>
-                                <h6>Office</h6>
-                                <span>123 Properties</span>
+                                <h6>Meeting Room</h6>
+                                <span>2 Properties</span>
                             </div>
                         </a>
                     </div>
@@ -79,8 +79,8 @@
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="{{asset('pelanggan/img/icon-building.png')}}" alt="Icon">
                                 </div>
-                                <h6>Building</h6>
-                                <span>123 Properties</span>
+                                <h6>Water Park</h6>
+                                <span>1 Properties</span>
                             </div>
                         </a>
                     </div>
@@ -90,8 +90,8 @@
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="{{asset('pelanggan/img/icon-neighborhood.png')}}" alt="Icon">
                                 </div>
-                                <h6>Townhouse</h6>
-                                <span>123 Properties</span>
+                                <h6>Mushola</h6>
+                                <span>1 Properties</span>
                             </div>
                         </a>
                     </div>
@@ -101,8 +101,8 @@
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="{{asset('pelanggan/img/icon-condominium.png')}}" alt="Icon">
                                 </div>
-                                <h6>Shop</h6>
-                                <span>123 Properties</span>
+                                <h6>Toko Oleh - Oleh</h6>
+                                <span>1 Properties</span>
                             </div>
                         </a>
                     </div>
@@ -112,8 +112,8 @@
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="{{asset('pelanggan/img/icon-luxury.png')}}" alt="Icon">
                                 </div>
-                                <h6>Garage</h6>
-                                <span>123 Properties</span>
+                                <h6>Mini Playground</h6>
+                                <span>1 Properties</span>
                             </div>
                         </a>
                     </div>
@@ -133,12 +133,11 @@
                         </div>
                     </div>
                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                        <h1 class="mb-4">#1 Place To Find The Perfect Homestay</h1>
+                        <h1 class="mb-4">NK Cafe Homestay</h1>
                         <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                        <p><i class="fa fa-check text-primary me-3"></i>Tempor erat elitr rebum at clita</p>
-                        <p><i class="fa fa-check text-primary me-3"></i>Aliqu diam amet diam et eos</p>
-                        <p><i class="fa fa-check text-primary me-3"></i>Clita duo justo magna dolore erat amet</p>
-                        <a class="btn btn-primary py-3 px-5 mt-3" href="">Read More</a>
+                        <p><i class="fa fa-check text-primary me-3"></i>3 menit dari Apartment Begawan & Kampus UMM</p>
+                        <p><i class="fa fa-check text-primary me-3"></i>5 menit dari kampus UNISMA</p>
+                        <p><i class="fa fa-check text-primary me-3"></i>10 menit dari kampus UB & kampus UIN</p>
                     </div>
                 </div>
             </div>
@@ -165,7 +164,7 @@
                             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
-                                        <a href="{{route('detailhomestay', $item->id_homestay)}}"><img class="img-fluid" src="{{asset('storage/'.$item->gambar)}}" alt=""></a>
+                                        <a href="{{route('detailhomestay', $item->id_homestay)}}"><img class="img-fluid" style="width: 600px; height: 400px;" src="{{asset('storage/'.$item->gambar)}}" alt=""></a>
                                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Book</div>
                                     </div>
                                     <div class="p-4 pb-0">

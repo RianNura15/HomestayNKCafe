@@ -50,9 +50,6 @@
                         <a href="{{route('deletehomestay', $item->id_homestay)}}" class="btn btn-danger btn-sm">
                           Hapus
                         </a>
-                        <a href="{{route('perlengkapan', $item->id_homestay)}}" class="btn btn-success btn-sm">
-                          Perlengkapan
-                        </a>
                         <a href="{{route('fasilitas', $item->id_homestay)}}" class="btn btn-primary btn-sm">
                           Fasilitas
                         </a>

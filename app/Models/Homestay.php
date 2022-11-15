@@ -32,4 +32,9 @@ class Homestay extends Model
     {
         return $this->belongsTo(Perlengkapan::class, 'homestay_id', 'id_homestay');
     }
+
+    public function datasewa()
+    {
+        return $this->hasMany(DataSewa::class, 'homestay_id', 'id_homestay');
+    }
 }

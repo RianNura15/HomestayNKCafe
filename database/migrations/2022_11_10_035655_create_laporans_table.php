@@ -19,7 +19,10 @@ class CreateLaporansTable extends Migration
             ->onUpdate('no action')
             ->onDelete('no action');
             $table->date('tanggal')->nullable();
+            $table->datetime('tanggal_mulai')->nullable();
+            $table->datetime('tanggal_selesai')->nullable();
             $table->string('status')->nullable();
+            $table->integer('total')->nullable();
             $table->timestamps();
         });
     }

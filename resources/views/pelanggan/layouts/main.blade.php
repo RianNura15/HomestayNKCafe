@@ -30,6 +30,7 @@
 
     <!-- Template Stylesheet -->
     <link href="{{asset('pelanggan/css/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('pelanggan/js/simple-database/style.css')}}">
 </head>
 
 <body>
@@ -41,11 +42,17 @@
     <script src="{{asset('pelanggan/lib/easing/easing.min.js')}}"></script>
     <script src="{{asset('pelanggan/lib/waypoints/waypoints.min.js')}}"></script>
     <script src="{{asset('pelanggan/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('pelanggan/js/simple-database/simple-database.js')}}"></script>
 
     <!-- Template Javascript -->
     <script src="{{asset('pelanggan/js/main.js')}}"></script>
     <script defer src="{{asset('pelanggan/js/activePage.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script>
+      // Simple Datatable
+      let table1 = document.querySelector('#table1');
+      let dataTable = new simpleDatatables.DataTable(table1);
+    </script>
 
 </body>
 

@@ -71,11 +71,30 @@ Route::group(['middleware' => ['auth','ceklevel:Admin']], function () {
         Route::get('destroy/{id_fasilitas}', [AdminController::class, 'delete_fasilitas'])->name('deletefasilitas');
     });
     
-    Route::get('/datasewa', [AdminController::class, 'datasewa'])->name('datasewa');
+    Route::prefix('datasewa')->group(function () {
+        Route::get('index', [AdminController::class, 'datasewa'])->name('datasewa');
+        Route::get('cek', [AdminController::class, 'cekdatasewa'])->name('cekdatasewa');
+        Route::get('konfirmasi', [AdminController::class, 'konfirmasi'])->name('konfirmasi');
+        Route::get('batal', [AdminController::class, 'batal'])->name('batal');
+        Route::get('setuju', [AdminController::class, 'setuju'])->name('setuju');
+    });
     
-    Route::get('/laporan', [AdminController::class, 'laporan'])->name('laporan');
+    Route::prefix('laporan')->group(function () {
+        Route::get('index', [AdminController::class, 'laporan'])->name('laporan');
+        Route::get('cetak', [AdminController::class, 'cetaklaporan'])->name('cetaklaporan');
+    });
     
-    Route::get('/datauser', [AdminController::class, 'datauser'])->name('datauser');
+    Route::prefix('datauser')->group(function () {
+        Route::get('/index', [AdminController::class, 'datauser'])->name('datauser');
+        Route::get('/editstatus/{id}', [AdminController::class, 'updatestatususer'])->name('updatestatususer');
+    });
+
+    Route::prefix('databank')->group(function () {
+        Route::get('index', [AdminController::class, 'bank'])->name('databank');
+        Route::post('create', [AdminController::class, 'addbank'])->name('tambahbank');
+        Route::post('update/{id_bank}', [AdminController::class, 'updatebank'])->name('updatebank');
+        Route::get('destroy/{id_bank}', [AdminController::class, 'deletebank'])->name('deletebank');
+    });
 });
 
 
@@ -88,9 +107,22 @@ Route::get('/contactus', [PelangganController::class, 'contactus'])->name('conta
 
 Route::get('/detail/{id_homestay}', [PelangganController::class, 'detailhomestay'])->name('detailhomestay');
 
+
 Route::group(['middleware' => ['auth','ceklevel:Pelanggan']], function () {
     Route::prefix('profil')->group(function () {
         Route::get('index', [PelangganController::class, 'profil'])->name('profilpelanggan');
         Route::post('edit', [PelangganController::class, 'updateprofil'])->name('editprofil');
+    });
+    
+    Route::prefix('booking')->group(function () {
+        Route::get('index/{id_homestay}', [PelangganController::class, 'transaksi'])->name('transaksi');
+        Route::post('booking', [PelangganController::class, 'addsewa'])->name('booking');
+    });
+
+    Route::prefix('riwayatsewa')->group(function () {
+        Route::get('index', [PelangganController::class, 'riwayatsewa'])->name('riwayatsewa');
+        Route::post('buktipembayaran', [PelangganController::class, 'buktipembayaran'])->name('buktipembayaran');
+        Route::get('buktitransaksi/{id_sewa}', [PelangganController::class, 'buktitransaksi'])->name('buktitransaksi');
+        Route::get('batal/{id_sewa}', [PelangganController::class, 'batal'])->name('batal');
     });
 });

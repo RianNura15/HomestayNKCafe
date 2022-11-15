@@ -8,9 +8,12 @@ use App\Models\Homestay;
 use App\Models\DataSewa;
 use App\Models\Datauser;
 use App\Models\Fasilitas;
+use App\Models\Bank;
 use App\Models\GambarHomestay;
 use App\Models\Perlengkapan;
 use App\Models\User;
+use Carbon\Carbon;
+use DateTime;
 use App\Http\Requests\LoginPelangganRequest;
 use App\Http\Requests\RegisPelangganRequest;
 use Illuminate\Support\Facades\Hash;
@@ -149,5 +152,86 @@ class PelangganController extends Controller
         $data = Homestay::all();
         $fasilitas = Fasilitas::where('homestay_id', $id_homestay)->get();
         return view('pelanggan.detailhomestay', compact('data','homestay','fasilitas','kt','km','dp','rt','rm','rk','tb'));
+    }
+
+    public function transaksi($id_homestay)
+    {
+        $data = Homestay::where('id_homestay', $id_homestay)->get();
+        $bank = Bank::get();
+        return view('pelanggan.transaksi', compact('data','bank'));
+    }
+
+    public function addsewa(Request $request)
+    {
+        $cek = DataSewa::where('homestay_id', $request->homestay_id)->orWhere('tanggal_mulai', $request->tanggal_mulai)->orWhere('status','=','1')->first();
+        $expired = Carbon::now()->addHours(2)->format('H:i:s');
+        $tanggalsewa = Carbon::now()->format('Y-m-d');
+        $hargasewa = $request->hargasewa;
+        $tglmulai = strtotime($request->tanggal_mulai);
+        $tglselesai = strtotime($request->tanggal_selesai);
+        $diff = $tglselesai - $tglmulai;
+        $totalhari = $diff / 60 / 60 / 24;
+        $total = ($hargasewa * $totalhari);
+
+        DataSewa::create([
+            'user_id' => $request->user_id,
+            'homestay_id' => $request->homestay_id,
+            'bank_id' => $request->bank_id,
+            'hargasewa' => $hargasewa,
+            'expired' => $expired,
+            'tanggal_sewa' => $tanggalsewa,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_selesai' => $request->tanggal_selesai,
+            'totalhari' => $totalhari,
+            'keterangan' => '-',
+            'konfirmasi' => 'Belum di Konfirmasi',
+            'total' => $total,
+            'buktipembayaran' => '-',
+            'status' => '1'
+        ]);
+        return redirect('/riwayatsewa');
+    }
+
+    public function buktipembayaran(Request $request)
+    {
+        $file = $request->file('buktipembayaran');
+        $image_name = '';
+
+        if($file){
+            $image_name = $file->store('bukti-pembayaran', 'public');
+            if(Storage::exists('public/' . $request->oldImage)){
+                Storage::delete('public/' . $request->oldImage);
+            }
+        }
+
+        DataSewa::where('id_sewa', $request->id_sewa)->update([
+            'buktipembayaran' => $image_name,
+            'keterangan' => 'Pending'
+        ]);
+        return redirect()->back();
+    }
+
+    public function batal(Request $request, $id_sewa)
+	{
+		DataSewa::where('id_sewa',$id_sewa)->update([
+			'konfirmasi'=>'Batal',
+			'keterangan'=>'Di Batalkan',
+            'status' => '0'
+		]);
+
+		return redirect()->back();
+	}
+
+    public function buktitransaksi($id_sewa)
+    {
+        $data = DataSewa::with('user', 'homestay')->where('id_sewa', $id_sewa)->get();
+        return view('pelanggan.buktitransaksi', compact('data'));
+    }
+
+    public function riwayatsewa()
+    {
+        $data = Homestay::all(); 
+        $sewa = DataSewa::with('homestay','bank')->where('data_sewas.user_id', Auth::user()->id)->latest()->get();
+        return view('pelanggan.riwayatsewa', compact('data', 'sewa'));
     }
 }

@@ -20,8 +20,14 @@
                   <thead>
                     <tr>
                       <th class="text-center">No.</th>
+                      <th class="text-center">User</th>
                       <th class="text-center">Tanggal Sewa</th>
                       <th class="text-center">Expired</th>
+                      <th class="text-center">Mulai Sewa</th>
+                      <th class="text-center">Selesai Sewa</th>
+                      <th class="text-center">keterangan</th>
+                      <th class="text-center">Bukti Pembayaran</th>
+                      <th class="text-center">Total</th>
                       <th class="text-center">Aksi</th>
                     </tr>
                   </thead>
@@ -29,16 +35,22 @@
                     @foreach($data as $item)
                     <tr>
                       <td class="text-center">{{$loop->iteration}}</td>
-                      <td class="text-center">{{$item->tanggal_sewa}}</td>
+                      <td class="text-center">{{$item->user->name}}</td>
+                      <td class="text-center">{{ \Carbon\Carbon::parse($item->tanggal_sewa)->format('d F Y') }}</td>
                       <td class="text-center">{{ \Carbon\Carbon::parse($item->expired)->locale('id')->diffForHumans() }}</td>
+                      <td class="text-center">{{ \Carbon\Carbon::parse($item->tanggal_mulai)->format('d F Y') }}</td>
+                      <td class="text-center">{{ \Carbon\Carbon::parse($item->tanggal_selesai)->format('d F Y') }}</td>
+                      <td class="text-center">{{$item->keterangan}}</td>
+                      <td class="text-center">{{$item->buktipembayaran}}</td>
+                      <td class="text-center">Rp. {{number_format($item->hargasewa,0,",",".")}}</td>
                       <td class="text-center">
                         <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detail{{$item->id_fasilitas}}">
                           <i class="ni ni-archive-2"></i>
                         </button>
-                        <a href="{{route('ceksewa', $item->id_sewa)}}" class="btn btn-danger btn-sm">
+                        <a href="" class="btn btn-danger btn-sm">
                           <i class="ni ni-fat-remove"></i>
                         </a>
-                        <a href="{{route('batalsewa', $item->id_sewa)}}" class="btn btn-danger btn-sm">
+                        <a href="" class="btn btn-danger btn-sm">
                           <i class="ni ni-fat-remove"></i>
                         </a>
                       </td>

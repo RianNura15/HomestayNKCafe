@@ -37,11 +37,17 @@
                       </td>
                       <td class="text-center">
                         <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detail{{$item->id}}">
-                          <i class="ni ni-archive-2"></i>
+                          Detail
                         </button>
-                        <a href="" class="btn btn-danger btn-sm">
-                          <i class="ni ni-fat-remove"></i>
+                        @if($item->status == "Aktif")
+                        <a href="{{route('updatestatususer', $item->id)}}" class="btn btn-danger btn-sm" style="color: white;">
+                          Nonaktifkan
                         </a>
+                        @else
+                        <a href="{{route('updatestatususer', $item->id)}}" class="btn btn-success btn-sm" style="color: white;">
+                          Aktifkan
+                        </a>
+                        @endif
                       </td>
                     </tr>
                     <!-- Modal -->
@@ -65,13 +71,10 @@
                                 <div class="col-8"> {{$item->email}}</div>
                                 <div class="col-3">Jenis Kelamin </div>
                                 <div class="col-1">: </div>
-                                <div class="col-8"> {{$item->jenis_kelamin}}</div>
-                                <div class="col-3">KTP </div>
-                                <div class="col-1">: </div>
-                                <div class="col-8"> {{$item->ktp}}</div>
+                                <div class="col-8"> {{$item->datauser->jenis_kelamin}}</div>
                                 <div class="col-3">Alamat </div>
                                 <div class="col-1">: </div>
-                                <div class="col-8"> {{$item->alamat_user}}</div>
+                                <div class="col-8"> {{$item->datauser->alamat_user}}</div>
                             </div>
                           </div>
                           <div class="modal-footer">

@@ -1,5 +1,5 @@
 @extends('pelanggan.layouts.main')
-@section('title', 'Contact Us')
+@section('title', 'Profil')
 @section('content')
     <div class="container-xxl bg-white p-0">
         @include('pelanggan.layouts.spinner')
