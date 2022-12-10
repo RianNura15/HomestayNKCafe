@@ -22,9 +22,9 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('sewa:expired')->hourly();
-        $schedule->command('sewa:mulai')->hourly();
-        $schedule->command('sewa:selesai')->hourly();
+        $schedule->command('sewa:expired')->everyMinute();
+        $schedule->command('sewa:mulai')->everyMinute();
+        $schedule->command('sewa:selesai')->everyMinute();
     }
 
     /**

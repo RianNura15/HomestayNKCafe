@@ -47,7 +47,7 @@
                         <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit{{$item->id_homestay}}">
                           Edit
                         </button>
-                        <a href="{{route('deletehomestay', $item->id_homestay)}}" class="btn btn-danger btn-sm">
+                        <a href="{{route('deletehomestay', $item->id_homestay)}}" onclick="return confirm('Yakin hapus data homestay {{$item->nama_homestay}}?')" class="btn btn-danger btn-sm">
                           Hapus
                         </a>
                         <a href="{{route('fasilitas', $item->id_homestay)}}" class="btn btn-primary btn-sm">

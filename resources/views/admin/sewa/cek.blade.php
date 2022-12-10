@@ -34,8 +34,8 @@
                                     <div class="form-group">
                                         @foreach($data as $item)
                                         @csrf
-                                        <form class="form form-vertical" method="GET" action="{{route('batal',$item->id_sewa)}}">
-                                            @if($item->keterangan!=='Di Batalkan')
+                                        <form class="form form-vertical" method="GET" action="{{route('bataladmin', $item->id_sewa)}}">
+                                            @if($item->keterangan !== 'Di Batalkan')
                                             <button class="btn btn-sm btn-outline-danger form-control rounded-pill mt-4" onclick="return confirm('Yakin Akan Dibatalkan?')"> <i class="icon dripicons-document-edit"></i> Batalkan</button>
                                             @endif
                                         </form>

@@ -153,6 +153,7 @@
                         @else
                         <a class="btn btn-primary py-3 px-5 mt-3" href="{{route('loginpelanggan')}}">Booking {{$item->nama_homestay}}</a>
                         @endauth
+                        <a class="btn btn-primary py-3 px-5 mt-3" href="{{route('cekbooking', $item->id_homestay)}}">Cek Booking {{$item->nama_homestay}}</a>
                     </div>
                 </div>
                 @endforeach

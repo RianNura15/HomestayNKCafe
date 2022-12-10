@@ -89,7 +89,7 @@ Route::group(['middleware' => ['auth','ceklevel:Admin']], function () {
         Route::get('index', [AdminController::class, 'datasewa'])->name('datasewa');
         Route::get('cek/{id_sewa}', [AdminController::class, 'cekdatasewa'])->name('cekdatasewa');
         Route::get('konfirmasi/{id_sewa}', [AdminController::class, 'konfirmasi'])->name('konfirmasi');
-        Route::get('batal/{id_sewa}', [AdminController::class, 'batal'])->name('batal');
+        Route::get('batal/{id_sewa}', [AdminController::class, 'batal'])->name('bataladmin');
         Route::get('setuju/{id_sewa}', [AdminController::class, 'setuju'])->name('setuju');
     });
     
@@ -121,6 +121,7 @@ Route::get('/contactus', [PelangganController::class, 'contactus'])->name('conta
 
 Route::get('/detail/{id_homestay}', [PelangganController::class, 'detailhomestay'])->name('detailhomestay');
 
+Route::get('/cekbooking/{id_homestay}', [PelangganController::class, 'cekbooking'])->name('cekbooking');
 
 Route::group(['middleware' => ['auth','ceklevel:Pelanggan']], function () {
     Route::prefix('profil')->group(function () {
@@ -137,7 +138,7 @@ Route::group(['middleware' => ['auth','ceklevel:Pelanggan']], function () {
         Route::get('index', [PelangganController::class, 'riwayatsewa'])->name('riwayatsewa');
         Route::post('buktipembayaran', [PelangganController::class, 'buktipembayaran'])->name('buktipembayaran');
         Route::get('buktitransaksi/{id_sewa}', [PelangganController::class, 'buktitransaksi'])->name('buktitransaksi');
-        Route::get('batal/{id_sewa}', [PelangganController::class, 'batal'])->name('batal');
+        Route::get('batal/{id_sewa}', [PelangganController::class, 'batal'])->name('batalpelanggan');
     });
 });
 

@@ -66,7 +66,7 @@ class PelangganController extends Controller
             Datauser::insert([
                 'user_id'=>$users->id,
             ]);
-            return redirect('login')->with('regis','-');
+            return redirect('login/index')->with('regis','-');
         }
     }
 
@@ -155,6 +155,19 @@ class PelangganController extends Controller
         return view('pelanggan.detailhomestay', compact('data','homestay','fasilitas','kt','km','dp','rt','rm','rk','tb'));
     }
 
+    public function cekbooking(Request $request, $id_homestay)
+	{
+        $data = Homestay::all();
+        $homestay = Homestay::where('id_homestay', $id_homestay)->get();
+		$search = $request['search'] ?? "";
+		if ($search != "") {
+			$cek = DataSewa::with('homestay')->where('data_sewas.homestay_id',$id_homestay)->where('tanggal_mulai','LIKE', "%$search%")->where('keterangan','Aktif')->orWhere('keterangan','Mulai')->latest()->get();
+		} else {
+			$cek = DataSewa::with('homestay')->where('data_sewas.homestay_id',$id_homestay)->where('keterangan','Aktif')->orWhere('keterangan','Mulai')->latest()->get();
+		}
+		return view('pelanggan.cekbooking', compact('data', 'search', 'cek', 'homestay'));
+	}
+
     public function transaksi($id_homestay)
     {
         $data = Homestay::where('id_homestay', $id_homestay)->get();
@@ -215,8 +228,9 @@ class PelangganController extends Controller
     public function batal(Request $request, $id_sewa)
 	{
 		DataSewa::where('id_sewa',$id_sewa)->update([
-			'konfirmasi'=>'Batal',
-			'keterangan'=>'Di Batalkan',
+			'konfirmasi' => 'Batal',
+			'keterangan' => 'Di Batalkan',
+            'setuju' => '0',
             'status' => '0'
 		]);
 

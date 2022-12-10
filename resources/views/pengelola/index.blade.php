@@ -1,5 +1,7 @@
 @extends('pengelola.layouts.main')
 @section('title','Dashboard')
+@section('pages', 'Dashboard')
+@section('halaman', 'Dashboard')
 @section('content')
   <div class="min-height-300 bg-nk position-absolute w-100"></div>
   @include('pengelola.layouts.sidebar')

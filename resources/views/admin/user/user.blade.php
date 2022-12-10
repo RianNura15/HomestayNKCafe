@@ -40,11 +40,11 @@
                           Detail
                         </button>
                         @if($item->status == "Aktif")
-                        <a href="{{route('updatestatususer', $item->id)}}" class="btn btn-danger btn-sm" style="color: white;">
+                        <a href="{{route('updatestatususer', $item->id)}}" onclick="return confirm('Yakin ingin menonaktifkan {{$item->name}}?')" class="btn btn-danger btn-sm" style="color: white;">
                           Nonaktifkan
                         </a>
                         @else
-                        <a href="{{route('updatestatususer', $item->id)}}" class="btn btn-success btn-sm" style="color: white;">
+                        <a href="{{route('updatestatususer', $item->id)}}" onclick="return confirm('Yakin ingin mengaktifkan {{$item->name}}?')" class="btn btn-success btn-sm" style="color: white;">
                           Aktifkan
                         </a>
                         @endif

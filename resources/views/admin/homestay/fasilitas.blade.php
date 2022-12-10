@@ -47,7 +47,7 @@
                         <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit{{$item->id_fasilitas}}">
                           <i class="ni ni-settings-gear-65"></i>
                         </button>
-                        <a href="{{route('deletefasilitas', $item->id_fasilitas)}}" class="btn btn-danger btn-sm">
+                        <a href="{{route('deletefasilitas', $item->id_fasilitas)}}" onclick="return confirm('Yakin hapus data fasilitas {{$item->nama_fasilitas}}?')" class="btn btn-danger btn-sm">
                           <i class="ni ni-fat-remove"></i>
                         </a>
                       </td>

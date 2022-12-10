@@ -65,6 +65,8 @@
                         <span class="badge bg-success">Mulai</span>
                         @elseif($item->keterangan == 'Selesai')
                         <span class="badge bg-success">Selesai</span>
+                        @elseif($item->keterangan == 'Di Batalkan')
+                        <span class="badge bg-danger">Di Batalkan</span>
                         @elseif($item->keterangan == '-' || $item->setuju == '0')
                         <span class="badge bg-warning">Menunggu <br> Persetujuan</span>
                         @endif

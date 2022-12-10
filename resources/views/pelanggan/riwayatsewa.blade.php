@@ -91,6 +91,8 @@
                                         <span class="badge bg-success">Mulai</span>
                                         @elseif($item->keterangan == 'Selesai')
                                         <span class="badge bg-success">Selesai</span>
+                                        @elseif($item->keterangan == 'Di Batalkan')
+                                        <span class="badge bg-danger">Di Batalkan</span>
                                         @elseif($item->keterangan == '-' || $item->setuju == '0')
                                         <span class="badge bg-warning">Menunggu Admin</span>
                                         @endif
@@ -106,9 +108,9 @@
                                         </button>
                                         @endif
                                         @if($item->buktipembayaran == '-' && $item->keterangan == '-')
-                                        <a href="" class="btn btn-danger btn-sm">
-                                        Batal
-                                        </a>
+                                        <form class="form form-vertical" method="GET" action="{{route('batalpelanggan', $item->id_sewa)}}">
+                                            <button class="btn btn-danger btn-sm" onclick="return confirm('Yakin Akan Dibatalkan?')">Batal</button>
+                                        </form>
                                         @endif
                                         @if($item->keterangan=="Aktif" || $item->keterangan=='Selesai' || $item->keterangan=='Mulai')
                                         <a href="{{route('buktitransaksi',$item->id_sewa)}}" target="_blank" class="btn btn-sm btn-warning">
